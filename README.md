@@ -1,6 +1,6 @@
 # mixed-mSSL
 
-`mixed-mSSL` provides a simple wrapper, `mixed_mssl()`, around the **mSSL** C++/R implementation to fit a mixed‐outcome multivariate spike‐and‐slab LASSO model.  It automatically handles mixed binary and continuous responses.
+`mixed-mSSL` provides a simple wrapper, `mixed_mssl()`, around the **mSSL** C++/R implementation to fit a mixed‐outcome multivariate spike‐and‐slab LASSO model.  It can handle mixed binary and continuous responses and provides MAP estimates of the regression coefficients and the latent precision matrix by running a MC ECM algorithm.
 
 
 ## Usage
