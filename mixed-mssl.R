@@ -82,7 +82,7 @@ mixed_mssl <- function(
   cont_cols  <- which(response_types == "continuous")
   new_order  <- c(bin_cols, cont_cols)
   Y2         <- Y[, new_order, drop = FALSE]
-  binidxend  <- length(bin_cols)
+  binidxend  <- length(bin_cols)-1
   
   fit <- mpcSSL_dpe(
     X, Y2,
