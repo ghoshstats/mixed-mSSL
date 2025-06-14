@@ -59,4 +59,4 @@ print(perf_Omega)
 
 You may adjust the penalty grid and hyperparameters to tune sensitivity vs. specificity/precision as needed. 
 
-Original mSSL source is available at [https://github.com/YunyiShen/mSSL](https://github.com/YunyiShen/mSSL).
+The original mSSL source is available at [https://github.com/YunyiShen/mSSL](https://github.com/YunyiShen/mSSL).
