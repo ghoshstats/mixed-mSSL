@@ -8,6 +8,8 @@
 ```r
 library(Rcpp)       # required by mSSL C++ code
 library(mixed.mSSL) # your package
+source("error_metrics.R")
+source("simulation_settings.R")
 
 set.seed(12)
 p <- 2; q <- 5; n <- 200
