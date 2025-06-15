@@ -122,8 +122,8 @@ run_one_iter <- function(n, p, q, graph_fn, signal_fn, response_types,
   
   # Fit sep-SSL
   t0 <- Sys.time()
-  out_sepssl <- sepSSL(X, Y_sc, type = response_types,
-                       lambda1 = 0.04, lambda0 = 0.5)
+  out_sepssl <- suppressWarnings(sepSSL(X, Y_sc, type = response_types,
+                       lambda1 = 0.04, lambda0 = 0.5))
   t1 <- Sys.time()
   perf_sepssl <- error_B(out_sepssl$B_est, B_true) %>%
     as.list() %>%
