@@ -4,10 +4,9 @@
 
 ## Installation
 
-1. Download the zip file from this repository (`mixed-mSSL-main.zip')
+1. Download the zip file from this repository (`mixed-mSSL-main.zip`)
 2. **Unzip & Set Working Directory in R**
    ```r
-   # in R, point to the unzipped folder
    setwd("/path/to/mixed-mSSL-main")
    ```
 **Install Dependencies**
