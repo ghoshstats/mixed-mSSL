@@ -75,7 +75,7 @@ run_one_iter <- function(n, p, q, graph_fn, signal_fn, response_types,
   if (length(cont_idx))
     Y_sc[, cont_idx] <- scale(Y_sc[, cont_idx])
   
-  # 4.3 Fit mixed-mSSL
+  #  Fit mixed-mSSL
   t0 <- Sys.time()
   out_mssl <- mixed_mssl(
     X_sc, Y_sc, response_types,
@@ -88,7 +88,7 @@ run_one_iter <- function(n, p, q, graph_fn, signal_fn, response_types,
     as.list() %>%
     append(list(time = as.numeric(t1 - t0)))
   
-  # 4.4 Fit Mt-MBSP
+  # Fit Mt-MBSP
   t0 <- Sys.time()
   out_mbsp <- Mt_MBSP(X, Y, response_types)
   t1 <- Sys.time()
@@ -120,7 +120,7 @@ run_one_iter <- function(n, p, q, graph_fn, signal_fn, response_types,
     time = as.numeric(t1 - t0)
   )
   
-  # 4.5 Fit sep-SSL
+  # Fit sep-SSL
   t0 <- Sys.time()
   out_sepssl <- sepSSL(X, Y_sc, type = response_types,
                        lambda1 = 0.04, lambda0 = 0.5)
@@ -129,7 +129,7 @@ run_one_iter <- function(n, p, q, graph_fn, signal_fn, response_types,
     as.list() %>%
     append(list(time = as.numeric(t1 - t0)))
   
-  # 4.6 Fit sep-GLM
+  #  Fit sep-GLM
   t0 <- Sys.time()
   out_sepglm <- sepGLMnet(as.matrix(X_sc), as.matrix(Y_sc),
                           type = response_types)
@@ -198,3 +198,8 @@ summary_tbl <- results %>%
   )
 
 print(summary_tbl)
+
+#' Example:: To replicate the results of the AR1 setting with Uniform[-5,5] signals and (n,p,q)=(200,500,4), run the following:
+#'
+# run_scenario(n=200,p=500,q=4,graph_name = "AR1",signal_name = "uniform",iter=100)
+
