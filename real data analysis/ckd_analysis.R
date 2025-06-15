@@ -1,5 +1,10 @@
 ################################# CKD analysis ################################
 source("other_methods.R")
+source("mixed-mssl.R")
+library(caret)
+library(pROC)
+
+library(MtMBSP)
 cleaned_CKD <- read.csv("~/updated_chronic_kidney_disease.csv")
 cleaned_CKD$class <- ifelse(cleaned_CKD$class == "ckd", 1, 0)
 Y <- as.matrix(cbind(cleaned_CKD$class, cleaned_CKD$sg))
@@ -55,10 +60,6 @@ which(non_zero_rows)
 # 2,3,4,5,7,8,9,11,12,14,15,16,17,18,19,21 
 
 ############################### Prediction Analysis ###############################
-
-library(caret)
-library(pROC)
-
 ############## Predictive AUC ####################
 set.seed(123)  
 folds <- createFolds(Y[, 1], k = 5) 
@@ -89,7 +90,7 @@ for (i in seq_along(folds)) {
                          eps = 1e-3,
                          s_max_condition = 10 * nrow(X_train),
                          obj_counter_max = 5,
-                         verbose = 1, nrep = 1000, nskp = 1))
+                         verbose = 1, nrep = 1000, nskp = 1))$B
   #########################################################
   non_zero_rows <- apply(B_matrix, 1, function(row) any(row != 0))
   non_zero_indices <- which(non_zero_rows)
@@ -99,7 +100,7 @@ for (i in seq_along(folds)) {
   X_test <- X_non_zero[test_indices,]
   Y_train <- Y[train_indices,1]
   Y_test <- Y[test_indices,1]
-  model <- glm(as.factor(Y_train) ~ ., data = as.data.frame(X_train), family = binomial(link = "probit"))
+  model <- glm(as.factor(Y_train) ~ ., data = as.data.frame(X_train), family = "binomial")
   prob_pred <- predict(model, newdata = as.data.frame(X_test), type = "response")
   all_prob_pred <- c(all_prob_pred, prob_pred)
   all_Y_test <- c(all_Y_test, Y_test)
