@@ -160,6 +160,7 @@ run_scenario <- function(n, p, q, graph_name, signal_name, iter = 100) {
   hyp <- get_hyper_params(n, p, q, signal_name)
   
   map_dfr(1:iter, function(i) {
+    set.seed(i)
     run_one_iter(n, p, q, graph_fn, signal_fn, response_types,
                  hyp$lambdas, hyp$xis,
                  hyp$theta_hyper, hyp$eta_hyper) %>%
@@ -167,14 +168,18 @@ run_scenario <- function(n, p, q, graph_name, signal_name, iter = 100) {
   })
 }
 
-all_scenarios <- expand.grid(
-  n           = c(200, 500, 800),
-  p           = c(500,1000,1000),
-  q           = c(4,   4,   6),
-  graph_name  = c("AR1","AR2","BD","SG","SW","TN"),
-  signal_name = c("uniform","disjoint"),
-  stringsAsFactors = FALSE
+valid_combos <- tibble::tibble(
+  n = c(200, 500, 800),
+  p = c(500, 1000, 1000),
+  q = c(4,   4,    6)
 )
+
+all_scenarios <- valid_combos %>%
+  crossing(
+    graph_name  = c("AR1","AR2","BD","SG","SW","TN"),
+    signal_name = c("uniform","disjoint")
+  )
+
 
 results <- pmap_dfr(all_scenarios, 
                     function(n, p, q, graph_name, signal_name) {
