@@ -9,6 +9,7 @@
 library(Rcpp)       
 source("error_metrics.R")
 source("simulation_settings.R")
+source("mixed-mssl.R")
 
 set.seed(12)
 p <- 2; q <- 5; n <- 200
