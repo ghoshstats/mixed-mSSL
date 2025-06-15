@@ -6,8 +6,7 @@
 ## Usage
 
 ```r
-library(Rcpp)       # required by mSSL C++ code
-library(mixed.mSSL) # your package
+library(Rcpp)       
 source("error_metrics.R")
 source("simulation_settings.R")
 
@@ -21,7 +20,6 @@ B <- as.matrix(
   )
 )
 
-# Design matrix
 X <- matrix(rnorm(n * p), nrow = n, ncol = p)
 
 # Response covariance & intercept
@@ -48,7 +46,6 @@ mixed_model <- mixed_mssl(
   eta_hyper_params    = c(1, ncol(Y))
 )
 
-# Extract estimates
 B_est     <- mixed_model$B
 Omega_est <- mixed_model$Omega
 
