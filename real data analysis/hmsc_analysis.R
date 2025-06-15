@@ -2,7 +2,7 @@ library(tidygraph)
 library(ggraph)
 library(dplyr)
 library(igraph)   
-
+source("mixed-mssl.R")
 species_data <- read.csv("~/hmsc_data.csv")
 da = droplevels(subset(species_data, Year %in% 2014))
 prev_da = droplevels(subset(species_data, Year %in% 2013))
