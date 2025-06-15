@@ -1,8 +1,19 @@
 # mixed-mSSL
 
-`mixed-mSSL` provides a simple wrapper, `mixed_mssl()`, around the **mSSL** C++/R implementation to fit a mixed‐outcome multivariate spike‐and‐slab LASSO model.  It can handle mixed binary and continuous responses and provides MAP estimates of the regression coefficients and the latent precision matrix by running a MC ECM algorithm.
+`mixed-mSSL` provides a simple wrapper, `mixed_mssl()`, around the **mSSL** C++/R implementation to fit a mixed‐outcome multivariate spike‐and‐slab LASSO model.  It can handle mixed binary and continuous responses and provides MAP estimates of the regression coefficients and the latent precision matrix by running a MC ECM algorithm. Codes for replicating the simulation studies as well the real data analyses of the pre-print, Ghosh, S., Deshpande S.K. (2025+) "High-dimensional regression with outcomes of mixed-type using the multivariate spike-and-slab LASSO" can be found in the folders `simulations\` and 'real data analysis\` respectively.
 
+## Installation
 
+1. Download the zip file from this repository (`mixed-mSSL-main.zip')
+2. **Unzip & Set Working Directory in R**
+   ```r
+   # in R, point to the unzipped folder
+   setwd("/path/to/mixed-mSSL-main")
+   ```
+**Install Dependencies**
+   ```r
+   install.packages("Rcpp") 
+   ```
 ## Usage
 
 ```r
@@ -57,6 +68,5 @@ print(perf_B)
 print(perf_Omega)
 ```
 
-You may adjust the penalty grid and hyperparameters to tune sensitivity vs. specificity/precision as needed. 
 
 The original mSSL source is available at [https://github.com/YunyiShen/mSSL](https://github.com/YunyiShen/mSSL).
